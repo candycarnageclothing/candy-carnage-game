@@ -130,6 +130,7 @@ button{font:inherit;color:inherit}
 .cd-disc.has::before{display:none}
 @keyframes spin{to{transform:rotate(360deg)}}
 .cd-side{display:flex;flex-direction:column;gap:2.6cqh;min-width:0}
+#cd-by{font:calc(1.2*var(--k))/1.3 var(--f-sys);letter-spacing:.25em;color:var(--sysdim);min-height:1.6cqh;margin-top:-1.6cqh}
 #cd-status{font:calc(2.4*var(--k))/1.2 var(--f-game);color:#fff;min-height:3cqh}
 #viz{width:100%;height:9cqh;image-rendering:pixelated;border-bottom:.25cqw solid #2f3760}
 .tracks{display:grid;grid-template-columns:repeat(5,1fr);gap:1.2cqh 1cqw}
@@ -148,7 +149,28 @@ button{font:inherit;color:inherit}
 #s-title .duck{width:20cqw;image-rendering:pixelated;margin-top:2cqh;animation:bob 1s ease-in-out infinite alternate}
 @keyframes bob{to{transform:translateY(-1.2cqh) rotate(3deg)}}
 #s-title .start{margin-top:3cqh;font:calc(2.2*var(--k))/1 var(--f-game);letter-spacing:.3em;color:#fff;animation:blink 1s steps(1) infinite}
-#s-title .copy{position:absolute;bottom:4cqh;left:0;right:0;font:calc(1.2*var(--k))/1 var(--f-sys);letter-spacing:.25em;color:#6b6791}
+#s-title .copy{position:absolute;bottom:4cqh;left:0;right:0;font:calc(1.2*var(--k))/1.7 var(--f-sys);letter-spacing:.25em;color:#6b6791}
+#s-title .copy small{display:block;font-size:.85em;color:#56527a}
+/* credits roll */
+#s-cred{background:#000;overflow:hidden}
+.cred-roll{position:absolute;left:0;right:0;top:100%;display:flex;flex-direction:column;align-items:center;gap:7cqh;text-align:center;padding:0 6cqw 30cqh;animation:roll 46s linear forwards}
+.cred-roll:has(a:hover),.cred-roll:has(a:focus-visible){animation-play-state:paused}
+@keyframes roll{to{transform:translateY(calc(-100% - 100cqh))}}
+.cr-top{font:calc(1.6*var(--k))/1 var(--f-sys);letter-spacing:.5em;color:#a7a2c8}
+.cr-head{font:400 calc(5*var(--k))/1 var(--f-title);color:var(--slime);text-shadow:.4cqw .4cqw 0 var(--pink);margin-top:-4cqh}
+.cr-sec{display:flex;flex-direction:column;align-items:center;gap:1.6cqh}
+.cr-role{font:calc(1.4*var(--k))/1.4 var(--f-sys);letter-spacing:.4em;color:#8a90b4}
+.cr-name{font:calc(3.2*var(--k))/1.1 var(--f-game);letter-spacing:.12em;color:#fff;text-decoration:none;text-shadow:.25cqw .25cqw 0 #000}
+a.cr-name{color:#fff2a8;border-bottom:.2cqw dashed rgba(255,242,168,.4)}
+a.cr-name:hover,a.cr-name:focus-visible{color:var(--pink);outline:none;border-color:var(--pink)}
+.cr-star{font-size:calc(4.4*var(--k))}
+.cr-sub{font:calc(1.3*var(--k))/1.4 var(--f-sys);letter-spacing:.3em;color:#6b6791}
+.cr-small .cr-role{font-size:calc(1.1*var(--k))}
+.cr-note{font:calc(1.3*var(--k))/1.9 var(--f-sys);letter-spacing:.25em;color:#a7a2c8;margin-top:4cqh}
+.cr-moth{width:24cqh;image-rendering:pixelated;margin-top:6cqh}
+.cr-end{font:calc(2.4*var(--k))/1 var(--f-game);letter-spacing:.3em;color:#fff;animation:blink 1.2s steps(1) infinite}
+#cred-exit{z-index:30}
+@media (prefers-reduced-motion:reduce){.cred-roll{animation:none;top:0;overflow-y:auto;height:100%;padding-top:12cqh}}
 @keyframes blink{50%{opacity:0}}
 
 /* ---------- RPG ---------- */
@@ -592,6 +614,7 @@ body .skip.gone,body.ingame .skip.gone,.exitbtn.gone{display:none !important}
         <div id="whisper" aria-hidden="true"></div>
         <button class="sysbtn nav" id="m-mem">MEMORY CARD</button>
         <button class="sysbtn nav" id="m-cd">CD PLAYER</button>
+        <button class="sysbtn nav" id="m-cred">CREDITS</button>
         <div class="hint" id="m-hint"></div>
       </section>
 
@@ -610,12 +633,31 @@ body .skip.gone,body.ingame .skip.gone,.exitbtn.gone{display:none !important}
         <div class="sysmsg" id="memmsg" hidden></div>
       </section>
 
+      <section class="layer sys" id="s-cred" hidden aria-label="Credits">
+        <div class="cred-roll" id="credroll">
+          <div class="cr-top">CANDY CARNAGE: THE GAME</div>
+          <div class="cr-head">ART &amp; MUSIC CREDITS</div>
+          <div class="cr-sec"><div class="cr-role">MOTH CHARACTER DESIGN</div><a class="cr-name cr-star" href="https://www.fiverr.com/falahzaidan511" target="_blank" rel="noopener">KIPLIK</a></div>
+          <div class="cr-sec"><div class="cr-role">3D DEADHEART MODEL</div><a class="cr-name" href="https://www.fiverr.com/zeesh4n_mehmood" target="_blank" rel="noopener">ZEESHAN MAHMOOD</a></div>
+          <div class="cr-sec"><div class="cr-role">GAME THEME &ldquo;SUGAR RUSH&rdquo;</div><a class="cr-name" href="https://www.fiverr.com/handanu" target="_blank" rel="noopener">HANDANU</a></div>
+          <div class="cr-sec"><div class="cr-role">PS1 PARANORMAL SOUNDTRACK &amp; SHOP THEME</div><a class="cr-name" href="https://bit-by-bit-sound.itch.io/" target="_blank" rel="noopener">BERT</a><div class="cr-sub">BIT BY BIT SOUND</div></div>
+          <div class="cr-sec"><div class="cr-role">CONSOLE, GAME DISC &amp; OTHER ASSETS</div><div class="cr-name">CANDY CARNAGE CLOTHING</div><div class="cr-sub">DEADHEART SUGAR CRYSTALS, COLOR &amp; ANIMATION</div></div>
+          <div class="cr-sec"><div class="cr-role">CREATED &amp; DIRECTED BY</div><div class="cr-name">CANDY CARNAGE CLOTHING</div></div>
+          <div class="cr-sec cr-small"><div class="cr-role">PROGRAMMING</div><div class="cr-sub">BUILT WITH AI ASSISTANCE (CLAUDE)</div></div>
+          <div class="cr-note">ALL ART, MUSIC &amp; CHARACTER DESIGN MADE BY HUMAN ARTISTS.<br>TAP A NAME TO SEE MORE OF THEIR WORK.</div>
+          <img class="cr-moth" id="crmoth" alt="">
+          <div class="cr-end">THANKS FOR PLAYING</div>
+        </div>
+        <button class="exitbtn" id="cred-exit" type="button">&#9664; BACK</button>
+      </section>
+
       <section class="layer sys" id="s-cd" hidden aria-label="CD player">
         <div class="head">CD PLAYER</div>
         <div class="cd-wrap">
           <div class="cd-disc" id="cdisc"></div>
           <div class="cd-side">
             <div id="cd-status">NO DISC</div>
+            <div id="cd-by"></div>
             <canvas id="viz" width="160" height="40"></canvas>
             <div class="tracks" id="tracks"></div>
           </div>
@@ -632,7 +674,7 @@ body .skip.gone,body.ingame .skip.gone,.exitbtn.gone{display:none !important}
         <div class="pre">CANDEMONIUM PRE-ORDERS NOW OPEN</div>
         <h1 class="logo"><img id="t-logo" alt="Candy Carnage"><span class="tg">THE GAME</span></h1>
         <div class="start">PRESS START</div>
-        <div class="copy">&copy;2026 CANDY CARNAGE CLOTHING</div>
+        <div class="copy">&copy;1999 CANDY CARNAGE CLOTHING &middot; PROPERTY OF HELLYWOOD VIDEO<small>MOTH CHARACTER DESIGN BY KIPLIK</small></div>
       </section>
 
       <section class="layer" id="s-rpg" hidden aria-label="Shop">
@@ -719,7 +761,7 @@ $("caseimg").src=IMG.disc; $("hximg").src=IMG.console; $("bll").src=$("blr").src
 const st={on:false,cur:"off",disc:false,met:false,refused:0,size:"M",item:0,receipts:[],lastBlk:null};
 let timers=[];
 const later=(fn,ms)=>{const t=setTimeout(fn,ms); timers.push(t); return t;};
-const LAYERS=["off","boot","menu","mem","cd","load","title","rpg"];
+const LAYERS=["off","boot","menu","mem","cd","cred","load","title","rpg"];
 const enter={};
 function show(n){
   timers.forEach(clearTimeout); timers=[];
@@ -894,7 +936,7 @@ function sched(){
   schedT=setTimeout(sched,30);
 }
 function startSong(where){ if(!audio()) return; waves(); stopAll(); songOn=true; songWhere=where||"cd"; songStepN=0; nextT=ac.currentTime+.08; if(songWhere==="cd") $("cdisc").classList.add("spin"); sched(); }
-const TRACKS={1:{file:"t1.mp3",name:"GHOSTLY WHISPERS",lp:[0,123.077]},2:{file:"t2.mp3",name:"IRON WOMB",lp:[0,122.5532]},3:{file:"t3.mp3",name:"GENETIC DISCOVERY",lp:[0,109.0909]},4:{file:"t4.mp3",name:"HELIX",lp:[0,106.6667]},5:{file:"t5.mp3",name:"AFTERMATH",lp:[0,117.3333]},6:{file:"t6.mp3",name:"CONTEMPLATING",lp:[0,75.0]},7:{file:"t7.mp3",name:"PARANORMAL SHOP",lp:[0,81.7021]},8:{file:"t8.mp3",name:"SUMMONING",lp:[0,129.0683]},9:{file:"t9.mp3",name:"SUGAR RUSH",lp:[0,76.8]}};
+const TRACKS={1:{file:"t1.mp3",name:"GHOSTLY WHISPERS",lp:[0,123.077]},2:{file:"t2.mp3",name:"IRON WOMB",lp:[0,122.5532]},3:{file:"t3.mp3",name:"GENETIC DISCOVERY",lp:[0,109.0909]},4:{file:"t4.mp3",name:"HELIX",lp:[0,106.6667]},5:{file:"t5.mp3",name:"AFTERMATH",lp:[0,117.3333]},6:{file:"t6.mp3",name:"CONTEMPLATING",lp:[0,75.0]},7:{file:"t7.mp3",name:"PARANORMAL SHOP",lp:[0,81.7021]},8:{file:"t8.mp3",name:"SUMMONING",lp:[0,129.0683]},9:{file:"t9.mp3",name:"SUGAR RUSH",by:"HANDANU",lp:[0,76.8]}};
 /* MENU_TRACK: the title screen theme. Swap to 9 once the custom track is in. SHOP_TRACK: browsing theme. */
 const MENU_TRACK=9, SHOP_TRACK=7;
 /* in the shop the soundtrack plays through in order instead of looping one song */
@@ -909,7 +951,7 @@ function loadBGM(n){
 }
 function playBGM(where,vol,n){
   if(!audio()) return; stopSong(); stopBGM(); bgmWhere=where; bgmTrack=n||SHOP_TRACK; const tok=++bgmToken;
-  if(where==="cd"){ $("cd-status").textContent="TRACK "+bgmTrack+"  "+TRACKS[bgmTrack].name; $("cdisc").classList.add("spin"); }
+  if(where==="cd"){ $("cd-status").textContent="TRACK "+bgmTrack+"  "+TRACKS[bgmTrack].name; $("cd-by").textContent="MUSIC BY "+(TRACKS[bgmTrack].by||"BERT \u00B7 BIT BY BIT SOUND"); $("cdisc").classList.add("spin"); }
   loadBGM(bgmTrack).then(buf=>{ bgmBuf=buf;
     if(!buf||tok!==bgmToken) return;
     bgmGain=ac.createGain(); bgmGain.gain.setValueAtTime(0,ac.currentTime); bgmGain.gain.linearRampToValueAtTime(vol,ac.currentTime+1);
@@ -1030,6 +1072,7 @@ enter.menu=()=>{
 };
 $("m-mem").onclick=()=>{ sfx("ok"); go("mem"); };
 $("m-cd").onclick=()=>{ sfx("ok"); go("cd"); };
+$("m-cred").onclick=()=>{ sfx("ok"); go("cred"); };
 
 /* ================= memory card ================= */
 const PAL={k:"#0c0b12",p:"#ff3d97",w:"#f4f2ff",g:"#45ff6a",y:"#ffe14a",d:"#3a2a5a",a:"#8c8a9c",c:"#d4dbea",b:"#4ab0ff",v:"#9a5cff",o:"#ff9a2a",t:"#8a5a32",r:"#ff4a4a",s:"#2a8f30"};
@@ -1129,9 +1172,13 @@ function memKeys(e){
     b.onclick=()=>{ if(TRACKS[i]){ sfx("ok"); playBGM("cd",.85,i); } else if(i===9){ stopAll(); sfx("err"); $("cd-status").textContent="TRACK 9  COMING SOON"; } else { stopAll(); sfx("err"); $("cd-status").textContent= st.disc?"DATA DISC. PRESS RESET.":"NO DISC"; } };
     t.appendChild(b); }
 })();
-$("cd-stop").onclick=()=>{ stopAll(); sfx("back"); $("cd-status").textContent=st.disc?"CANDY CARNAGE":"NO DISC"; };
+$("cd-stop").onclick=()=>{ stopAll(); sfx("back"); $("cd-status").textContent=st.disc?"CANDY CARNAGE":"NO DISC"; $("cd-by").textContent=""; };
 $("cd-exit").onclick=()=>{ stopAll(); sfx("back"); go("menu"); };
-enter.cd=()=>{ $("cd-status").textContent=st.disc?"CANDY CARNAGE":"NO DISC"; document.querySelector(".trk").focus({preventScroll:true}); };
+/* credits: restart the roll each time, play the closing song, Moth waves at the end */
+enter.cred=()=>{ const r=$("credroll"); r.style.animation="none"; void r.offsetWidth; r.style.animation=""; $("crmoth").src=IMG.happy; playBGM("cd",.6,5); $("cred-exit").focus({preventScroll:true}); };
+$("cred-exit").onclick=()=>{ stopAll(); sfx("back"); go("menu"); };
+$("credroll").addEventListener("animationend",()=>{ if(st.cur==="cred") later(()=>{ if(st.cur==="cred"){ stopAll(); go("menu"); } },4000); });
+enter.cd=()=>{ $("cd-status").textContent=st.disc?"CANDY CARNAGE":"NO DISC"; $("cd-by").textContent=""; document.querySelector(".trk").focus({preventScroll:true}); };
 (function viz(){
   requestAnimationFrame(viz);
   if(st.cur!=="cd") return;
@@ -1214,7 +1261,12 @@ function demonFlash(ms){
   setTimeout(()=>{ demonShow(true); tear(); },160);
   setTimeout(()=>demonShow(false),160+ms);
 }
-function cursed(on){ $("moth").classList.toggle("glitch",on); if(on){ sfx("drone"); demonFlash(900); upside(true,0); } else upside(false); }
+/* DEMON PHASE: the story switch.
+   0 = launch: no glitches, no demon. Moth is just Moth.
+   1 = later in Neon Rave: the MONST3R can arrives and the glitches start (random demon moments + lights out).
+   Flip this one number when it's time. */
+const GLITCH=0;
+function cursed(on){ if(!GLITCH) return; $("moth").classList.toggle("glitch",on); if(on){ sfx("drone"); demonFlash(900); upside(true,0); } else upside(false); }
 let upT=null, isUp=false;
 function upside(on,ms){
   clearTimeout(upT); const r=$("s-rpg");
@@ -1245,39 +1297,60 @@ st.visits=0; st.pokes=0; st.leaves=0; st.talked=0;
 let inHub=false, idleT=null, talkDeck=[];
 
 /* ---------- her back catalog ---------- */
+const NAME2=[{e:"happy",t:"oh! i remember why i'm called moth."},{e:"calm",t:"i always wear my goggles. i ride my scooter to work."},{e:"happy",t:"my bestie said i look like a moth in them. pretty sure that was it."},{e:"calm",t:"yeah. that was it."}];
+const NAME1=[{e:"calm",t:"why is my name moth?"},{e:"calm",t:"..."},{e:"annoyed",t:"wow. i actually don't remember.",fx:()=>{ if(!st.mothQ){ st.mothQ=1; talkDeck.splice(Math.min(talkDeck.length,2+Math.floor(Math.random()*3)),0,NAME2); } }}];
+const PREORDER=[{e:"calm",t:"the hoodies are pre-order only. sizes are limited."},{e:"calm",t:"that's all the selling i'm doing today."}];
+const NECKLACE=[{e:"happy",t:"oh, this necklace? i make my own jewelry. i made this."},{e:"calm",t:"it's the candy carnage deadheart."},{e:"calm",t:"i showed the owner. he seemed to like it, but he's not sure it'd sell."},{e:"happy",t:"you should tell him you like it too."}];
+/* important lines: the pre-order note once per visit; the name story and the necklace until they've been heard once */
 const TALK=[
-  [{e:"happy",t:"raspberry rapture and nuclear nectar."},{e:"calm",t:"one is pink. one is green. both are loud."},{e:"happy",t:"i'd wear both at once if the owner let me."}],
-  [{e:"calm",t:"the hoodies are pre-order only."},{e:"calm",t:"you order now, they show up later."},{e:"happy",t:"like a save file loading. but warm."}],
-  [{e:"annoyed",t:"the hoodie sizes are limited. like, really limited."},{e:"calm",t:"if yours is there, i wouldn't wait. just saying."}],
-  [{e:"calm",t:"see the little skulls and knuckles all over the hoodies?"},{e:"happy",t:"there's more inside the hood. it's the best part. don't tell the outside."}],
-  [{e:"calm",t:"the planes on that tee go down the side and around the back."},{e:"happy",t:"tap back. they're still flying. they never land."}],
-  [{e:"calm",t:"the deadheart. half heart, half ribcage."},{e:"happy",t:"same as me on mondays."}],
-  [{e:"happy",t:"have you tried the cd player? whole new soundtrack."},{e:"calm",t:"track 7 is the one that plays in here. i hum it when the shop's empty."},{e:"happy",t:"which is always. except right now."}],
-  [{e:"happy",t:"okay so if you've never heard old bring me the horizon you need to go home right now and-"},{e:"calm",t:"wait. you can't go home. you're shopping."},{e:"happy",t:"later, then. homework. count your blessings era. thank me after."}],
-  [{e:"calm",t:"people think emo and scene are the same thing."},{e:"annoyed",t:"they're not. i'm both. it's exhausting. i own so many belts."}],
-  [{e:"happy",t:"what are you listening to right now? actually don't tell me. i'll guess."},{e:"calm",t:"...i see stars? no? the faint?"},{e:"happy",t:"either way you have good taste. you're here."}],
-  [{e:"happy",t:"the medic droid made me want to dye my hair."},{e:"calm",t:"my mom said it was a phase. it's been a phase for a really long time."}],
-  [{e:"calm",t:"i don't really do feelings out loud."},{e:"calm",t:"but if i made you a mix cd, that would mean something. just so you know."}],
-  [{e:"annoyed",t:"i have a playlist for every mood. i have forty-one moods."},{e:"happy",t:"i'm on mood thirty-two right now. it's a good one."}],
-  [{e:"calm",t:"where'd i get the beanie? i made it."},{e:"calm",t:"told the owner he should sell these. he mumbled something about how nobody needs a beanie in arizona."},{e:"happy",t:"he doesn't get it. it's not about the weather. it's about the vibe."}],
-  [{e:"calm",t:"why am i called moth?"},{e:"calm",t:"my mom named me after the first thing that flew into the porch light."},{e:"happy",t:"i'm lucky it wasn't the june bug."}],
-  [{e:"calm",t:"why am i called moth?"},{e:"calm",t:"i ate a sweater once. long story."},{e:"happy",t:"the name stuck. the sweater didn't."}],
-  [{e:"calm",t:"why am i called moth?"},{e:"calm",t:"it's short for something. i forgot what."},{e:"happy",t:"it was really long."}],
-  [{e:"calm",t:"do you ever think about how memory cards only had fifteen blocks?"},{e:"happy",t:"i had to choose what to keep. i kept you. you're block nine."}],
-  [{e:"calm",t:"if you blow on the disc, it works better."},{e:"calm",t:"that's not true. but it feels true. that's enough for me."}],
-  [{e:"calm",t:"the duck went back to the cursed safari zone."},{e:"calm",t:"he left the save file, though. memory card 1."},{e:"happy",t:"i visit sometimes."}],
-  [{e:"calm",t:"i can hear the fan in your console from in here."},{e:"happy",t:"it sounds like the ocean. a tiny, dusty ocean."}],
-  [{e:"calm",t:"do you think the loading screen disc gets dizzy?"},{e:"calm",t:"i asked it. it just kept spinning. rude."}]
+  [{e:"calm",t:"check the hood lining on the hoodies. skulls, knuckles."},{e:"happy",t:"nobody sees it but you'll know. that's the best kind of detail."}],
+  [{e:"calm",t:"i wear a medium. i buy a large."},{e:"happy",t:"that's the whole system. it's never let me down."}],
+  [{e:"annoyed",t:"wash inside out, cold, hang dry. i tell everyone."},{e:"annoyed",t:"nobody listens. then their prints crack."},{e:"calm",t:"i'm not saying i told you. i'm saying i tell everyone."}],
+  [{e:"calm",t:"the planes tee wraps all the way around."},{e:"happy",t:"like it's trying to get away from you. relatable."}],
+  [{e:"calm",t:"black goes with black."},{e:"happy",t:"only fashion advice i have. it's never failed."}],
+  [{e:"happy",t:"raspberry rapture and nuclear nectar."},{e:"calm",t:"i can't pick. i've been trying since monday."}],
+  [{e:"calm",t:"the giraffe on the ghouls tee looks like he's seen things."},{e:"calm",t:"he has. he worked at a toy store."}],
+  [{e:"calm",t:"people ask if the neon one glows in the dark."},{e:"annoyed",t:"it doesn't. it just looks like it should. which is honestly worse."}],
+  [{e:"happy",t:"i layer a hoodie over a band tee over a long sleeve."},{e:"calm",t:"in arizona. i know. i don't want to talk about it."}],
+  [{e:"happy",t:"went to warped tour every summer."},{e:"calm",t:"sunburned, dehydrated, lost a shoe once. best days of my life."}],
+  [{e:"annoyed",t:"shows are so expensive now."},{e:"annoyed",t:"forty dollar ticket, sixty dollars in fees."},{e:"calm",t:"thanks a lot, ticketmaster. really."}],
+  [{e:"calm",t:"i stand in the back at shows."},{e:"happy",t:"that's where the good people are. and the exit."}],
+  [{e:"calm",t:"my headphones only work on one side."},{e:"happy",t:"i call it mono. it's a choice. it's not a choice."}],
+  [{e:"calm",t:"every mall used to have a store like this."},{e:"happy",t:"now there's this one. you're in it. congrats."}],
+  [{e:"happy",t:"my bestie and i still trade burned cds."},{e:"calm",t:"she labels them in sharpie. no tracklist. it's a surprise every time."}],
+  [{e:"calm",t:"the owner picks the music."},{e:"happy",t:"i turn it up when he's not looking."}],
+  [{e:"calm",t:"slow day."},{e:"calm",t:"it's always a slow day. i like it like that."}],
+  [{e:"calm",t:"i made this beanie. told the owner he should sell them."},{e:"annoyed",t:"he said nobody needs a beanie in arizona."},{e:"happy",t:"it's not about the weather. it's about the vibe."}],
+  [{e:"calm",t:"the stockroom light keeps buzzing."},{e:"calm",t:"i don't go back there after close. no reason."}],
+  [{e:"calm",t:"the hoodie zippers go all the way up. you can turn into a little cocoon."},{e:"happy",t:"i've tested it. on break."}],
+  [{e:"calm",t:"the owner named the pink one raspberry rapture."},{e:"annoyed",t:"i wanted to call it pink. i lost that vote. it was a vote of one. his."}],
+  [{e:"calm",t:"nuclear nectar looks different under every light."},{e:"happy",t:"under the bathroom light here it looks actually radioactive. which, fair."}],
+  [{e:"calm",t:"people ask if the tees run small."},{e:"happy",t:"they run normal. you've just been wearing your ex's shirts."}],
+  [{e:"calm",t:"the deadheart is half heart, half ribcage."},{e:"happy",t:"it's like love, but structural."}],
+  [{e:"calm",t:"if you're between sizes, size up."},{e:"happy",t:"hoodies are for disappearing into."}],
+  [{e:"happy",t:"the ghouls tee goes so hard with plaid pants."},{e:"calm",t:"trust me. i'm a professional. i work retail."}],
+  [{e:"calm",t:"i keep a lint roller at the counter for emergencies."},{e:"annoyed",t:"every day is an emergency. i wear black."}],
+  [{e:"calm",t:"lining up the planes print across the seams took forever."},{e:"happy",t:"the owner almost cried. i watched. i didn't help."}],
+  [{e:"happy",t:"my first show i wore a studded belt so heavy my jeans fell down during the breakdown."},{e:"calm",t:"nobody noticed. everyone was busy getting kicked in the face."}],
+  [{e:"calm",t:"i still have my old flip phone. no service."},{e:"happy",t:"i just like snapping it shut when someone's annoying."}],
+  [{e:"calm",t:"myspace top 8 ruined so many friendships."},{e:"annoyed",t:"i was number three on a lot of lists. never number one. it's fine. it's been twenty years. it's fine."}],
+  [{e:"happy",t:"i did my eyeliner on the city bus for four years."},{e:"calm",t:"i could do a wing during an earthquake. it's my only real skill."}],
+  [{e:"calm",t:"the mall stores used to smell like that one incense."},{e:"happy",t:"i think about it more than i think about most people."}],
+  [{e:"happy",t:"i went to a show where the singer jumped off the balcony into the crowd."},{e:"calm",t:"i caught a shoe. not his. someone else's. i still have it."}],
+  [{e:"calm",t:"the owner answers the phone 'candy carnage' like it's the title of a horror movie."},{e:"happy",t:"every single time. i love him for it. don't tell him."}],
+  [{e:"calm",t:"my scooter's parked out back. it's purple."},{e:"happy",t:"it makes a noise like a sad goose. i named her gertrude."}],
+  [{e:"calm",t:"i'm supposed to refold the tees every hour."},{e:"happy",t:"i refold them every hour-ish. the ish is doing a lot of work."}],
+  [{e:"calm",t:"the bathroom light flickers sometimes."},{e:"calm",t:"don't worry about it. it's a bathroom light. they do that."}],
+  [{e:"calm",t:"someone keeps leaving empty energy drink cans by the back door."},{e:"annoyed",t:"not mine. i don't drink those. they taste like a battery."}]
 ];
 const IDLE=[
-  {e:"calm",t:"..."},{e:"calm",t:"you can talk to me, you know."},{e:"happy",t:"i'm still here."},
-  {e:"annoyed",t:"the duck blinked. i swear it blinked."},{e:"calm",t:"take your time. i have literally nothing but time."},
-  {e:"calm",t:"*hums level 99*"},{e:"annoyed",t:"did you fall asleep on the controller?"}
+  {e:"calm",t:"..."},{e:"calm",t:"take your time. or don't."},{e:"calm",t:"i'm still here. i work here."},
+  {e:"calm",t:"*hums track 7*"},{e:"annoyed",t:"did you fall asleep?"},{e:"happy",t:"no rush. i'm getting paid either way."}
 ];
 const POKES=[
-  {e:"calm",t:"yes?"},{e:"annoyed",t:"that's my face."},{e:"annoyed",t:"i'm going to start charging for that."},
-  {e:"happy",t:"...okay, that one tickled."},{e:"calm",t:"you've poked me five times. i'm keeping count."},
-  {e:"annoyed",t:"i'll put it on your receipt."}
+  {e:"calm",t:"yes?"},{e:"annoyed",t:"that's my face."},{e:"annoyed",t:"do you poke all your cashiers?"},
+  {e:"happy",t:"...okay, that one tickled."},{e:"calm",t:"five pokes. i'm counting."},
+  {e:"annoyed",t:"i'm telling the owner."}
 ];
 function timeLine(){
   const d=new Date();
@@ -1285,28 +1358,65 @@ function timeLine(){
   if(d.getMonth()===9&&d.getDate()===30) return [{e:"calm",t:"tomorrow's halloween."},{e:"happy",t:"no reason. just saying it out loud. completely normal reason."}];
   const h=new Date().getHours(), hh=new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"}).toLowerCase();
   if(h<5) return [{e:"calm",t:"it's "+hh+". what are you doing up?"},{e:"happy",t:"same, honestly."}];
-  if(h<12) return [{e:"happy",t:"good morning. i don't sleep, but good morning."}];
-  if(h<18) return [{e:"calm",t:"it's the afternoon. that's when the light gets weird in here."},{e:"calm",t:"there's no light in here. that's what makes it weird."}];
-  return [{e:"calm",t:"evening is the best time to shop. everyone else is busy getting haunted."}];
+  if(h<12) return [{e:"calm",t:"morning shift. i've had one coffee. go easy on me."}];
+  if(h<18) return [{e:"calm",t:"afternoon is the dead zone. everyone's at school or work."},{e:"happy",t:"except you. respect."}];
+  return [{e:"calm",t:"night shift is the best shift. nobody asks for the manager."}];
 }
 function stateLines(){
   const L=[];
-  if(st.receipts.length) L.push([{e:"happy",t:"you already bought one. i saved the receipt."},{e:"calm",t:"i look at it sometimes."}]);
-  if(st.leaves>=2) L.push([{e:"annoyed",t:"you almost left a lot earlier. i noticed."},{e:"calm",t:"i notice everything. it's my one skill."}]);
-  if(st.pokes>=3) L.push([{e:"annoyed",t:"my cheek still hurts from all the poking, by the way."}]);
+  if(st.receipts.length) L.push([{e:"happy",t:"you already bought something. good pick, honestly."}]);
+  if(st.leaves>=2) L.push([{e:"calm",t:"you almost left like three times. it's fine. i do that at parties."}]);
+  if(st.pokes>=3) L.push([{e:"annoyed",t:"still thinking about the poking, by the way."}]);
   return L;
+}
+/* ===== lines from MothVoxBox =====
+   If moth-lines.json sits next to the game (exported from MothVoxBox and uploaded to GitHub),
+   it replaces the built-in script. If it's missing, the lines above are used. */
+const IMPORTANT_IDS={"v2-imp-preorder":PREORDER,"v2-imp-name1":NAME1,"v2-imp-name2":NAME2,"v2-imp-necklace":NECKLACE};
+function inDates(it){ if(!it.from||!it.to) return true; const d=new Date(), md=String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  return it.from<=it.to ? (md>=it.from&&md<=it.to) : (md>=it.from||md<=it.to); }
+const okLines=it=>it&&Array.isArray(it.lines)&&it.lines.length&&it.lines.every(l=>l&&typeof l.t==="string");
+function swapIn(arr,lines){ const fx=arr.length&&arr[arr.length-1].fx; arr.length=0; lines.forEach(l=>arr.push({e:["calm","happy","annoyed","demon"].includes(l.e)?l.e:"calm",t:l.t})); if(fx&&arr.length) arr[arr.length-1].fx=fx; }
+function applyVox(x){
+  if(!x||typeof x!=="object") return;
+  const pool=[];
+  (x.talk||[]).concat(x.drop||[]).forEach(it=>{ if(!okLines(it)||!inDates(it)) return;
+    if(IMPORTANT_IDS[it.id]) swapIn(IMPORTANT_IDS[it.id],it.lines); else { const a=[]; swapIn(a,it.lines); pool.push(a); } });
+  if(pool.length){ TALK.length=0; pool.forEach(a=>TALK.push(a)); }
+  const idle=(x.idle||[]).filter(it=>okLines(it)&&inDates(it)).map(it=>({e:it.lines[0].e||"calm",t:it.lines[0].t}));
+  if(idle.length){ IDLE.length=0; idle.forEach(l=>IDLE.push(l)); }
+  const pr=x.products||{};
+  PRODUCTS.forEach(p=>{ const it=pr[p.n]; if(okLines(it)){ p.line=it.lines[0].t; if(it.lines[0].e) p.e=it.lines[0].e; } });
+  talkDeck=[];
+}
+try{ fetch("moth-lines.json",{cache:"no-store"}).then(r=>r.ok?r.json():null).then(applyVox).catch(()=>{}); }catch(e){}
+/* what this visitor has already heard, kept on their device so lines rarely repeat */
+const lineId=l=>l[0].t.slice(0,48);
+function heardMap(){ try{ return JSON.parse(store.get("cc_heard")||"{}"); }catch(e){ return {}; } }
+function markHeard(l){ if(!l||!l[0]) return; const h=heardMap(), id=lineId(l); h[id]=(h[id]||0)+1; store.set("cc_heard",JSON.stringify(h)); st.said.add(id); }
+st.said=new Set();
+function buildDeck(){
+  const h=heardMap(), imp=[];
+  if(!st.said.has(lineId(PREORDER))) imp.push(PREORDER);
+  if(!h[lineId(NAME1)]) imp.push(NAME1);
+  if(!h[lineId(NECKLACE)]) imp.push(NECKLACE);
+  let pool=TALK.concat(h[lineId(NECKLACE)]?[NECKLACE]:[]).filter(l=>!st.said.has(lineId(l)));
+  if(!pool.length){ st.said=new Set(); pool=TALK.slice(); }
+  const rest=shuffle(pool).sort((a,b)=>(h[lineId(a)]||0)-(h[lineId(b)]||0));
+  return imp.slice(0,1).concat([timeLine()],imp.slice(1,2),stateLines(),imp.slice(2),rest);
 }
 function talk(){
   st.talked++;
-  if(!talkDeck.length) talkDeck=[timeLine()].concat(stateLines(),shuffle(TALK));
-  if(st.talked>1 && st.talked%12===0){ say([{e:"calm",t:"i'm running out of things to say."},{e:"happy",t:"i'll make up new ones while you're gone."}],()=>hub("anything else?")); return; }
-  say(talkDeck.shift(),()=>hub(pick(["anything else?","what else?","want to hear another one?","okay. what now?"])));
+  if(!talkDeck.length) talkDeck=buildDeck();
+  if(st.talked>1 && st.talked%12===0){ say([{e:"calm",t:"okay i'm out of stuff to say."},{e:"happy",t:"i'll think of more on my break."}],()=>hub("anything else?")); return; }
+  const line=talkDeck.shift(); markHeard(line);
+  say(line,()=>hub(pick(["anything else?","what else?","want to hear another one?","okay. what now?"])));
 }
 
 /* ---------- the hub ---------- */
 function hub(prompt){
   inHub=true;
-  ask(prompt||pick(["what do you need?","shop, talk, or stare at me?","what'll it be?"]),[
+  ask(prompt||pick(["what do you need?","shop, talk, or just hang out?","what's up?"]),[
     {label:"SHOP",fn:openShop},{label:"TALK",fn:talk},{label:"LEAVE",fn:leave}
   ],"calm");
   scheduleIdle();
@@ -1366,45 +1476,43 @@ enter.rpg=()=>{
   face("calm"); st.visits++;
   if(!st.skip&&!st.returning&&!reduce){ waves(); const d=$("door"); d.hidden=false; d.querySelectorAll(".dwrap,.dclosed,.dopen").forEach(e=>{ e.style.animation="none"; void e.offsetWidth; e.style.animation=""; }); sfx("door"); setTimeout(()=>{ d.hidden=true; },2200); }
   if(bgmWhere&&bgmTrack===SHOP_TRACK){ bgmWhere="rpg"; bgmVol(.25); } else later(()=>playBGM("rpg",.25,SHOP_TRACK),200);
-  if(st.skip){ st.skip=false; st.met=true; later(()=>{ openShop(); $("help").textContent="skipping the cutscene? respect. here's the drop."; },350); return; }
+  if(st.skip){ st.skip=false; st.met=true; later(()=>{ openShop(); $("help").textContent="skipping straight to the stuff. respect."; },350); return; }
   if(st.returning){ st.returning=false; st.met=true; later(()=>say([{e:"happy",t:"oh. you're back."},{e:"calm",t:"i kept the lights on. and your spot."}],()=>hub()),500); return; }
   let intro;
   if(!st.met) intro=[
-    {who:"???",e:"calm",t:"...oh. you actually put the disc in."},
-    {who:"???",e:"calm",t:"nobody's played this one in a long time. i've been keeping the shop running by myself."},
-    {who:"MOTH",e:"happy",t:"i'm moth! i keep the inventory. and the save files. and the lights on, mostly.",fx:()=>{st.met=true;}},
-    {e:"happy",t:"there's a new drop. two hoodies. one pink, one green."},
-    {e:"calm",t:"they're pre-order only, and the sizes are limited. when they're gone, they're gone."}
+    {who:"MOTH",e:"happy",t:"oh hey. take your time. or don't, i'm not your boss.",fx:()=>{st.met=true;}},
+    {e:"calm",t:"i'm moth. i work here. new drop's out, two hoodies, a few tees."},
+    {e:"calm",t:"the hoodies are pre-order. sizes are limited. that's the whole speech."}
   ];
-  else if(st.visits===2) intro=[{e:"happy",t:"you came back!"},{e:"calm",t:"the hoodies are still on pre-order. for now."}];
-  else if(st.visits===3) intro=[{e:"calm",t:"third time."},{e:"happy",t:"people who come back three times usually stay."}];
-  else intro=[pick([{e:"happy",t:"oh. it's you again. good."},{e:"calm",t:"i saved your spot."},{e:"happy",t:"welcome back. i dusted."},{e:"annoyed",t:"you took the disc out. it was very dark."}])];
+  else if(st.visits===2) intro=[{e:"happy",t:"back again. cool."},{e:"calm",t:"the shelves didn't change. okay, they did a little."}];
+  else if(st.visits===3) intro=[{e:"calm",t:"third visit. you're basically a regular."},{e:"happy",t:"regulars get nothing. but it's nice to be one."}];
+  else intro=[pick([{e:"happy",t:"hey. music's on, lights are on. browse."},{e:"calm",t:"oh hey. you again. good."},{e:"happy",t:"welcome back. i swept. kind of."},{e:"calm",t:"hey. door still sticks. you made it though."}])];
   later(()=>say(intro,()=>hub(st.visits===1?"so. what do you need?":null)),reduce?500:2400);
 };
 function leave(){
   st.leaves++;
-  if(st.leaves===1) ask("leaving already? it gets so quiet in here.",[{label:"STAY",fn:()=>hub("good. stay.")},{label:"BYE",fn:quit}],"calm");
-  else if(st.leaves===2) say([{e:"annoyed",t:"the disc doesn't come out until you choose, you know.",fx:()=>cursed(true)},{e:"happy",t:"...kidding. mostly.",fx:()=>cursed(false)}],()=>ask("so. leaving?",[{label:"STAY",fn:()=>hub("i knew it.")},{label:"BYE",fn:quit}],"calm"));
+  if(st.leaves===1) ask("heading out?",[{label:"STAY",fn:()=>hub("good. stay.")},{label:"BYE",fn:quit}],"calm");
+  else if(st.leaves===2) say([{e:"annoyed",t:"you keep almost leaving. it's fine. i do that at parties.",fx:()=>cursed(true)},{e:"happy",t:"no judgment.",fx:()=>cursed(false)}],()=>ask("so. leaving?",[{label:"STAY",fn:()=>hub("i knew it.")},{label:"BYE",fn:quit}],"calm"));
   else ask("you keep almost leaving. the OPEN button is right there.",[{label:"STAY",fn:()=>hub("that's what i thought.")},{label:"BYE",fn:quit}],"annoyed");
 }
-function quit(){ say([{e:"calm",t:"okay. i'll be here."},{e:"happy",t:"i'm always here."}],()=>exitGame(()=>show("menu"))); }
+function quit(){ say([pick([{e:"calm",t:"cool. door sticks a little. push hard."},{e:"happy",t:"later. tell your friends. or don't. more for you."}])],()=>exitGame(()=>show("menu"))); }
 
 /* ---------- the shop ---------- */
 const PRODUCTS=[
   {n:"RASPBERRY RAPTURE HOODIE",match:[["raspberry"],["pink","hoodie"]],price:"$XX",tag:"PRE-ORDER",img:"hpink",sizes:[["XS",1],["S",1],["M",1],["L",1],["XL",1],["2XL",1]],
-   line:"raspberry rapture. pre-order only, and the sizes are limited.",e:"happy"},
+   line:"raspberry rapture. pre-order, limited sizes. the inside of the hood is the best part.",e:"happy"},
   {n:"NUCLEAR NECTAR HOODIE",match:[["nectar"],["green","hoodie"]],price:"$XX",tag:"PRE-ORDER",img:"hgreen",sizes:[["XS",1],["S",1],["M",1],["L",1],["XL",1],["2XL",1]],
-   line:"nuclear nectar. same deal. pre-order, limited sizes, then it's gone.",e:"calm"},
+   line:"nuclear nectar. same deal as the pink one. this green doesn't exist in nature. i checked.",e:"calm"},
   {n:"GHOULS R US TEE",match:[["ghoul"]],price:"$XX",img:"ghouls",sizes:[["S",1],["M",1],["L",1],["XL",1],["2XL",1]],
-   line:"the giraffe has seen things. we don't talk about the clown.",e:"annoyed"},
+   line:"ghouls r us. the giraffe's been through some stuff. respect him.",e:"calm"},
   {n:"DEADHEART TEE (NEON)",match:[["neon","logo"],["neon","deadheart"],["green","logo"]],price:"$XX",img:"logon",sizes:[["S",1],["M",1],["L",1],["XL",1],["2XL",1]],
-   line:"same logo, louder. you can see this one from space.",e:"happy"},
+   line:"the deadheart, but loud. people will see you from the parking lot.",e:"happy"},
   {n:"DEADHEART TEE (BLACK)",match:[["black","logo"],["black","deadheart"]],price:"$XX",img:"logob",sizes:[["S",1],["M",1],["L",1],["XL",1],["2XL",1]],
-   line:"the deadheart, splattered. half heart, half ribcage. that's us.",e:"calm"},
+   line:"deadheart on black. goes with everything you own. which is black.",e:"calm"},
   {n:"PLANES TEE (RED)",match:[["red","plane"]],price:"$XX",img:"planerf",flip:true,gallery:[["planerf","FRONT"],["planerb","BACK"]],sizes:[["S",1],["M",1],["L",1],["XL",1],["2XL",1]],
-   line:"the planes fly down the side and around the back. they never land.",e:"happy",glines:{planerb:"they made it around the back. they always do."}},
+   line:"the planes go down the side and around the back. tap back. they're still going.",e:"happy",glines:{planerb:"see? around the back. they made it."}},
   {n:"PLANES TEE (BLACK)",match:[["black","plane"]],price:"$XX",img:"planebf",flip:true,gallery:[["planebf","FRONT"],["planebb","BACK"]],sizes:[["S",1],["M",1],["L",1],["XL",1],["2XL",1]],
-   line:"black one. same planes. still flying. tap back to follow them.",e:"calm",glines:{planebb:"see? around the back. they're fine."}}
+   line:"same planes, black tee. these ones fly at night.",e:"calm",glines:{planebb:"night flight. still going."}}
 ];
 st.item=0; st.size=null; st.bag=0;
 function openShop(){
@@ -1463,9 +1571,9 @@ $("buy").onclick=()=>{
   if(STORE&&p.opt&&p.opt[st.size]) toStore({type:"cc:add",id:p.opt[st.size]});
   sfx("ok"); if(!STORE){ st.bag++; $("bagn").textContent=st.bag; bagBump(); } st.lastBuy={c:p.n,s:st.size};
   $("shop").hidden=true; $("moth").classList.remove("small");
-  say(STORE?[{e:"happy",t:p.n.toLowerCase()+", size "+st.size.toLowerCase()+". it's in your bag."}]:[{e:"happy",t:p.n.toLowerCase()+", size "+st.size.toLowerCase()+". it's in your bag."},{e:"calm",t:"(on the real store, this goes to your cart.)"}],askSave);
+  say(STORE?[{e:"happy",t:p.n.toLowerCase()+", size "+st.size.toLowerCase()+". it's in your bag. good pick, honestly."}]:[{e:"happy",t:p.n.toLowerCase()+", size "+st.size.toLowerCase()+". it's in your bag. good pick, honestly."},{e:"calm",t:"(on the real store, this goes to your cart.)"}],askSave);
 };
-$("sback").onclick=()=>{ sfx("back"); $("shop").hidden=true; $("moth").classList.remove("small"); hub("changed your mind?"); };
+$("sback").onclick=()=>{ sfx("back"); $("shop").hidden=true; $("moth").classList.remove("small"); hub("no? cool."); };
 /* ===== Big Cartel bridge =====
    On candycarnage.net the game runs inside an iframe. The store page (parent) sends real products,
    prices and stock, and does the actual add-to-cart and checkout, so the cart stays on the store. */
@@ -1502,10 +1610,10 @@ $("money").onclick=()=>{
   sfx("ok"); if(STORE) toStore({type:"cc:checkout"});
 
 };
-function askSave(){ ask("save your receipt to MEMORY CARD 1?",[{label:"YES",fn:doSave},{label:"NO",fn:()=>say([{e:"annoyed",t:"suit yourself. i'll remember anyway."}],afterBuy)}],"calm"); }
+function askSave(){ ask("save your receipt to MEMORY CARD 1?",[{label:"YES",fn:doSave},{label:"NO",fn:()=>say([{e:"calm",t:"cool. less paperwork for me."}],afterBuy)}],"calm"); }
 function doSave(){
   dlg.hidden=true; const sv=$("saving"), bar=$("sbar"); sv.hidden=false; bar.style.width="0"; requestAnimationFrame(()=>requestAnimationFrame(()=>bar.style.width="100%"));
-  later(()=>{ sv.hidden=true; st.receipts.push(st.lastBuy); sfx("save"); say([{e:"happy",t:"saved. i'll keep it safe. i keep everything."}],afterBuy); },reduce?300:1900);
+  later(()=>{ sv.hidden=true; st.receipts.push(st.lastBuy); sfx("save"); say([{e:"happy",t:"saved. i keep all the receipts. it's kind of a thing."}],afterBuy); },reduce?300:1900);
 }
 function afterBuy(){ inHub=true; ask("keep shopping, or check out?",[{label:"KEEP SHOPPING",fn:openShop},{label:"CHECKOUT ("+st.bag+")",fn:()=>STORE?say([{e:"happy",t:"to the register. don't forget to come back."}],()=>toStore({type:"cc:checkout"})):say([{e:"happy",t:"(on the real store, this opens checkout.)"}],()=>hub())},{label:"TALK",fn:talk}],"happy"); }
 
@@ -1526,14 +1634,14 @@ document.addEventListener("keydown",e=>{
     return;
   }
   if(e.key==="Escape"||e.key==="Backspace"){
-    if(st.cur==="mem"||st.cur==="cd"){ e.preventDefault(); stopAll(); sfx("back"); go("menu"); }
+    if(st.cur==="mem"||st.cur==="cd"||st.cur==="cred"){ e.preventDefault(); stopAll(); sfx("back"); go("menu"); }
     else if(st.cur==="rpg" && !$("shop").hidden){ e.preventDefault(); $("sback").click(); }
   }
 });
 document.querySelectorAll("#s-menu .sysbtn,#s-cd .nav").forEach(b=>{ b.addEventListener("pointerenter",()=>b.focus({preventScroll:true})); b.addEventListener("focus",()=>sfx("move")); });
 
 /* ambient glitches while the console is on */
-(function g(){ setTimeout(()=>{ if(st.on && st.cur!=="off" && st.cur!=="boot" && !reduce){ if(st.cur==="rpg"){ const d=420+Math.random()*300; demonFlash(d); upside(true,d+1400); } else tear(); } g(); }, 18000+Math.random()*24000); })();
+(function g(){ setTimeout(()=>{ if(GLITCH && st.on && st.cur!=="off" && st.cur!=="boot" && !reduce){ if(st.cur==="rpg"){ const d=420+Math.random()*300; demonFlash(d); upside(true,d+1400); } else tear(); } g(); }, 18000+Math.random()*24000); })();
 
 /* ================= the room: zoom in / out, skip, coupon, returning visitors ================= */
 const COUPON="CARNAGE15";
