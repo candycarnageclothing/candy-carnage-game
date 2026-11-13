@@ -462,6 +462,20 @@ body.poweron .console.hx2 .hximg{filter:drop-shadow(0 0 22px rgba(255,30,40,.35)
 @keyframes skipglow{50%{box-shadow:0 6px 0 rgba(0,0,0,.45),0 0 38px rgba(255,61,151,.85)}}
 .skip:hover,.skip:focus-visible{filter:brightness(1.12)}
 body.ingame .skip{display:block !important}
+/* in Moth's shop the corner button becomes the bag: one tap to the cart */
+body.ingame.inrpg .skip{display:none !important}
+body > #money{all:unset;box-sizing:border-box;display:none;cursor:pointer;position:fixed;z-index:351;top:calc(12px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));
+  font:800 13px/1 "Michroma","Arial Black",sans-serif;letter-spacing:.16em;padding:14px 18px;color:#fff;text-shadow:2px 2px 0 rgba(0,0,0,.5);
+  background:linear-gradient(180deg,#ff3d97,#b0125f);border:2px solid #fff;border-radius:8px;box-shadow:0 6px 0 rgba(0,0,0,.45),0 0 24px rgba(255,61,151,.55)}
+body.ingame.inrpg > #money{display:block}
+body > #money b{color:#ffe36b;font-weight:800}
+body > #money::after{content:" \25B8\25B8";}
+body > #money:hover,body > #money:focus-visible{filter:brightness(1.12);outline:none;box-shadow:0 6px 0 rgba(0,0,0,.45),0 0 0 3px var(--slime)}
+body > #money.bump{animation:bagbump .45s ease-out}
+@keyframes bagbump{30%{transform:scale(1.18) rotate(-3deg)}}
+/* no accidental text highlighting while clicking around the game */
+body{-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+input,textarea,[contenteditable]{-webkit-user-select:text;user-select:text}
 /* idle hint in the console room */
 #nudge{position:fixed;z-index:60;width:max-content;max-width:min(230px,70vw);padding:10px 13px;font:600 12px/1.35 "Michroma","Arial Black",sans-serif;letter-spacing:.06em;color:#fff;background:#120a2a;border:2px solid #45ff6a;border-radius:8px;box-shadow:0 0 18px rgba(69,255,106,.45),0 6px 0 rgba(0,0,0,.4);pointer-events:none;transform:translate(-50%,-100%);animation:nudgein .35s ease-out,nudgebob 1.6s ease-in-out .35s infinite}
 #nudge.below::after{top:-9px;bottom:auto;left:auto;right:30px;transform:rotate(225deg)}
@@ -522,7 +536,7 @@ body .skip.gone,body.ingame .skip.gone,.exitbtn.gone{display:none !important}
 #s-rpg #pinfo #buy{color:#ffe36b}
 @container (orientation: portrait){
   #s-rpg #moth.small,#s-rpg #gfx.small{left:-2cqw;right:auto;top:1.5cqh;bottom:auto;height:21cqh}
-  #s-rpg #help{left:33cqw;right:3cqw;width:auto;top:2.5cqh;font-size:calc(2.5*var(--k));padding:1.8cqh 3cqw}
+  #s-rpg #help{left:33cqw;right:3cqw;width:auto;top:max(8.5cqh,64px);font-size:calc(2.5*var(--k));padding:1.8cqh 3cqw}
   #s-rpg #money{right:3cqw;top:auto;bottom:calc(31cqh + env(safe-area-inset-bottom,0px));padding:1cqh 2.6cqw;font-size:calc(2.2*var(--k))}
   #s-rpg #stage{left:3cqw;right:3cqw;top:23.5cqh;height:44cqh;padding:2cqw}
   .th{width:12cqw;height:12cqw}
@@ -709,7 +723,7 @@ const LAYERS=["off","boot","menu","mem","cd","load","title","rpg"];
 const enter={};
 function show(n){
   timers.forEach(clearTimeout); timers=[];
-  LAYERS.forEach(k=>{$("s-"+k).hidden=k!==n;}); if(n!=="rpg"&&typeof upside==="function") upside(false);
+  LAYERS.forEach(k=>{$("s-"+k).hidden=k!==n;}); document.body.classList.toggle("inrpg",n==="rpg"); if(n!=="rpg"&&typeof upside==="function") upside(false);
   if(songOn && n!=="cd") stopSong();
   if(bgmWhere){
     if(bgmWhere==="title"&&n==="rpg"){ bgmWhere="rpg"; duckBGM(.3); }
@@ -1447,7 +1461,7 @@ $("buy").onclick=()=>{
   const p=PRODUCTS[st.item]; if(!st.size){ sfx("err"); return; }
   if(STORE&&p.missing){ sfx("err"); $("help").textContent="this one's not on the shelves yet. check back soon."; face("annoyed"); return; }
   if(STORE&&p.opt&&p.opt[st.size]) toStore({type:"cc:add",id:p.opt[st.size]});
-  sfx("ok"); if(!STORE){ st.bag++; $("bagn").textContent=st.bag; } st.lastBuy={c:p.n,s:st.size};
+  sfx("ok"); if(!STORE){ st.bag++; $("bagn").textContent=st.bag; bagBump(); } st.lastBuy={c:p.n,s:st.size};
   $("shop").hidden=true; $("moth").classList.remove("small");
   say(STORE?[{e:"happy",t:p.n.toLowerCase()+", size "+st.size.toLowerCase()+". it's in your bag."}]:[{e:"happy",t:p.n.toLowerCase()+", size "+st.size.toLowerCase()+". it's in your bag."},{e:"calm",t:"(on the real store, this goes to your cart.)"}],askSave);
 };
@@ -1477,10 +1491,12 @@ function applyStore(list){
 window.addEventListener("message",e=>{
   if(!STORE_ORIGINS.some(r=>r.test(e.origin))) return; const m=e.data||{};
   if(m.type==="cc:products"&&Array.isArray(m.products)){ STORE=e.origin; applyStore(m.products); }
-  if(m.type==="cc:cart"){ st.bag=+m.count||0; $("bagn").textContent=st.bag; if(m.error){ say([{e:"annoyed",t:"the register jammed. that one didn't go in your bag. try again?"}],()=>hub()); } }
+  if(m.type==="cc:cart"){ if((+m.count||0)>st.bag&&typeof bagBump==="function") bagBump(); st.bag=+m.count||0; $("bagn").textContent=st.bag; if(m.error){ say([{e:"annoyed",t:"the register jammed. that one didn't go in your bag. try again?"}],()=>hub()); } }
 });
 if(window.parent!==window) window.parent.postMessage({type:"cc:ready"},"*");
-/* tapping BAG goes to the real cart */
+/* tapping BAG goes to the real cart. It lives pinned in the corner, not inside the shop window */
+document.body.appendChild($("money"));
+function bagBump(){ const m=$("money"); m.classList.remove("bump"); void m.offsetWidth; m.classList.add("bump"); }
 $("money").onclick=()=>{
   if(!st.bag){ sfx("err"); return; }
   sfx("ok"); if(STORE) toStore({type:"cc:checkout"});
