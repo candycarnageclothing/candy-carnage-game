@@ -205,6 +205,8 @@ button{font:inherit;color:inherit}
 .cmdb{font-size:calc(2.8*var(--k))}
 #money{right:3cqw;top:15cqh;padding:1cqh 2cqw;font-size:calc(2.2*var(--k));text-align:right;min-width:30cqw}
 #money b{color:#fff2a8;font-weight:400}
+button#money{font-family:inherit;cursor:pointer;line-height:inherit}
+button#money:hover,button#money:focus-visible{outline:none;filter:brightness(1.25);box-shadow:inset 0 0 0 .3cqw #4a5390,0 0 0 .4cqw #fff2a8}
 #saving{left:20cqw;right:20cqw;top:38cqh;padding:3cqh 3cqw;text-align:center;font-size:calc(2.6*var(--k));z-index:6}
 #saving .sb{height:1.6cqh;border:.25cqw solid #fff;margin-top:2cqh}
 #saving .sb i{display:block;height:100%;width:0;background:#fff;transition:width 1.6s steps(10)}
@@ -636,7 +638,7 @@ body .skip.gone,body.ingame .skip.gone,.exitbtn.gone{display:none !important}
         <div class="win" id="choices" hidden role="menu"></div>
         <div id="shop" hidden>
           <div class="win" id="help"></div>
-          <div class="win" id="money">BAG <b id="bagn">0</b></div>
+          <button class="win" id="money" type="button" aria-label="Open your bag (cart)">BAG <b id="bagn">0</b></button>
           <div class="win" id="stage"><div class="view" id="view"><div class="ring" id="ring"></div><span class="ptag" id="ptag" hidden></span><button class="arr l" id="aprev" aria-label="Previous item"></button><button class="arr r" id="anext" aria-label="Next item"></button></div><div class="thumbs" id="thumbs"></div></div>
           <div class="win" id="pinfo"><div class="prow"><span id="pname"></span><span id="pprice"></span></div><div class="sizes" id="sizes" role="group" aria-label="Size"></div><div class="cmdbs"><button class="cmdb nav" id="buy">BUY</button><button class="cmdb nav" id="sback">BACK</button></div></div>
         </div>
@@ -1478,6 +1480,12 @@ window.addEventListener("message",e=>{
   if(m.type==="cc:cart"){ st.bag=+m.count||0; $("bagn").textContent=st.bag; if(m.error){ say([{e:"annoyed",t:"the register jammed. that one didn't go in your bag. try again?"}],()=>hub()); } }
 });
 if(window.parent!==window) window.parent.postMessage({type:"cc:ready"},"*");
+/* tapping BAG goes to the real cart */
+$("money").onclick=()=>{
+  if(!st.bag){ sfx("err"); return; }
+  sfx("ok"); if(STORE) toStore({type:"cc:checkout"});
+
+};
 function askSave(){ ask("save your receipt to MEMORY CARD 1?",[{label:"YES",fn:doSave},{label:"NO",fn:()=>say([{e:"annoyed",t:"suit yourself. i'll remember anyway."}],afterBuy)}],"calm"); }
 function doSave(){
   dlg.hidden=true; const sv=$("saving"), bar=$("sbar"); sv.hidden=false; bar.style.width="0"; requestAnimationFrame(()=>requestAnimationFrame(()=>bar.style.width="100%"));
