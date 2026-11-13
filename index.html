@@ -185,6 +185,8 @@ a.cr-name:hover,a.cr-name:focus-visible{color:var(--pink);outline:none;border-co
   transform:perspective(40cqw) rotateX(55deg);transform-origin:bottom;opacity:.8}
 #moth,#gfx{-webkit-mask-image:linear-gradient(to bottom,#000 72%,transparent 97%);mask-image:linear-gradient(to bottom,#000 72%,transparent 97%);position:absolute;right:6cqw;bottom:10cqh;height:80cqh;aspect-ratio:1/1;image-rendering:pixelated;filter:drop-shadow(0 0 2cqw rgba(140,90,255,.35));transition:right .5s, height .5s;animation:breathe 3.2s ease-in-out infinite;cursor:pointer}
 #moth.small,#gfx.small{right:-4cqw;height:70cqh}
+/* room for the glow: the fade mask only paints inside the box, so pad the box out (content stays put) */
+#moth{box-sizing:content-box;padding:4cqw;margin:-4cqw}
 @keyframes breathe{50%{transform:translateY(-.8cqh)}}
 #moth.pop{animation:mpop .22s ease-out, breathe 3.2s ease-in-out .22s infinite}
 @keyframes mpop{40%{transform:translateY(-1.8cqh) scale(1.015)}}
@@ -660,6 +662,7 @@ body .skip.gone,body.ingame .skip.gone,.exitbtn.gone{display:none !important}
           <div class="cr-sec"><div class="cr-role">PS1 PARANORMAL SOUNDTRACK &amp; SHOP THEME</div><a class="cr-name" href="https://bit-by-bit-sound.itch.io/" target="_blank" rel="noopener">BERT</a><div class="cr-sub">BIT BY BIT SOUND</div></div>
           <div class="cr-sec"><div class="cr-role">CONSOLE, GAME DISC &amp; OTHER ASSETS</div><div class="cr-name">CANDY CARNAGE CLOTHING</div><div class="cr-sub">DEADHEART SUGAR CRYSTALS, COLOR &amp; ANIMATION</div></div>
           <div class="cr-sec"><div class="cr-role">CREATED &amp; DIRECTED BY</div><div class="cr-name">CANDY CARNAGE CLOTHING</div></div>
+          <div class="cr-sec cr-small"><div class="cr-role">PROGRAMMING</div><div class="cr-sub">BUILT WITH AI ASSISTANCE (CLAUDE)</div></div>
           <div class="cr-note">ALL ART, MUSIC &amp; CHARACTER DESIGN MADE BY HUMAN ARTISTS.<br>TAP A NAME TO SEE MORE OF THEIR WORK.</div>
           <img class="cr-moth" id="crmoth" alt="">
           <div class="cr-end">THANKS FOR PLAYING</div>
