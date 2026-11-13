@@ -1,0 +1,703 @@
+{
+ "version": 1,
+ "exported": "2026-11-13T22:29:19.685Z",
+ "talk": [
+  {
+   "id": "v2-imp-preorder",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "the hoodies are pre-order only. sizes are limited."
+    },
+    {
+     "e": "calm",
+     "t": "that's all the selling i'm doing today."
+    }
+   ]
+  },
+  {
+   "id": "v2-imp-name1",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "why is my name moth?"
+    },
+    {
+     "e": "calm",
+     "t": "..."
+    },
+    {
+     "e": "annoyed",
+     "t": "wow. i actually don't remember."
+    }
+   ]
+  },
+  {
+   "id": "v2-imp-name2",
+   "lines": [
+    {
+     "e": "happy",
+     "t": "oh! i remember why i'm called moth."
+    },
+    {
+     "e": "calm",
+     "t": "i always wear my goggles. i ride my scooter to work."
+    },
+    {
+     "e": "happy",
+     "t": "my bestie said i look like a moth in them. pretty sure that was it."
+    },
+    {
+     "e": "calm",
+     "t": "yeah. that was it."
+    }
+   ]
+  },
+  {
+   "id": "v2-imp-necklace",
+   "lines": [
+    {
+     "e": "happy",
+     "t": "oh, this necklace? i make my own jewelry. i made this."
+    },
+    {
+     "e": "calm",
+     "t": "it's the candy carnage deadheart."
+    },
+    {
+     "e": "calm",
+     "t": "i showed the owner. he seemed to like it, but he's not sure it'd sell."
+    },
+    {
+     "e": "happy",
+     "t": "you should tell him you like it too. maybe he'll start selling them?"
+    }
+   ]
+  },
+  {
+   "id": "v2-t00",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "check the hood lining on the hoodies. skulls, brass knuckles."
+    },
+    {
+     "e": "happy",
+     "t": "nobody sees it but you'll know. that's the best kind of detail."
+    }
+   ]
+  },
+  {
+   "id": "v2-t01",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "i wear a medium. i buy a large."
+    },
+    {
+     "e": "happy",
+     "t": "that's my whole system. it's never let me down."
+    }
+   ]
+  },
+  {
+   "id": "v2-t02",
+   "lines": [
+    {
+     "e": "annoyed",
+     "t": "wash inside out, cold, hang dry. i tell everyone."
+    },
+    {
+     "e": "annoyed",
+     "t": "nobody listens. eventually their prints crack."
+    },
+    {
+     "e": "calm",
+     "t": "i'm not saying i told you. i'm saying i tell everyone."
+    }
+   ]
+  },
+  {
+   "id": "v2-t03",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "the planes tee wraps all the way around the side."
+    },
+    {
+     "e": "happy",
+     "t": "very 2000s post hardcore. i heard the design was actually from 2006."
+    }
+   ]
+  },
+  {
+   "id": "v2-t04",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "black goes with black."
+    },
+    {
+     "e": "happy",
+     "t": "only fashion advice i have. it's never failed."
+    }
+   ]
+  },
+  {
+   "id": "v2-t05",
+   "lines": [
+    {
+     "e": "happy",
+     "t": "raspberry rapture and nuclear nectar."
+    },
+    {
+     "e": "calm",
+     "t": "i can't pick. i've been trying since monday."
+    }
+   ]
+  },
+  {
+   "id": "v2-t06",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "the giraffe on the ghouls tee looks like he's seen things."
+    },
+    {
+     "e": "calm",
+     "t": "he has. he worked at a toy store."
+    }
+   ]
+  },
+  {
+   "id": "mbfhqt3h30i94nu4rrly",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "people keep calling me an elder emo. i prefer scenior citizen."
+    },
+    {
+     "e": "annoyed",
+     "t": "i didn’t spend three hours teasing my hair to have my scene credentials erased."
+    }
+   ]
+  },
+  {
+   "id": "v2-t07",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "people ask if the neon one glows in the dark."
+    },
+    {
+     "e": "annoyed",
+     "t": "it doesn't. it just looks like it should. now i kinda wish it did..."
+    }
+   ]
+  },
+  {
+   "id": "v2-t08",
+   "lines": [
+    {
+     "e": "happy",
+     "t": "i layer a hoodie over a band tee over a long sleeve."
+    },
+    {
+     "e": "calm",
+     "t": "in arizona. i know. i don't want to talk about it."
+    }
+   ]
+  },
+  {
+   "id": "v2-t09",
+   "lines": [
+    {
+     "e": "happy",
+     "t": "went to warped tour every summer."
+    },
+    {
+     "e": "calm",
+     "t": "sunburned, dehydrated, lost a shoe once. best days of my life. now its too expensive :("
+    }
+   ]
+  },
+  {
+   "id": "v2-t10",
+   "lines": [
+    {
+     "e": "annoyed",
+     "t": "shows are so expensive now."
+    },
+    {
+     "e": "annoyed",
+     "t": "forty dollar ticket, sixty dollars in fees."
+    },
+    {
+     "e": "calm",
+     "t": "thanks a lot, ticketmaster. really."
+    }
+   ]
+  },
+  {
+   "id": "v2-t11",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "i stand in the back at shows."
+    },
+    {
+     "e": "happy",
+     "t": "that's where the good people are. and the exit."
+    }
+   ]
+  },
+  {
+   "id": "v2-t12",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "my headphones only work on one side."
+    },
+    {
+     "e": "happy",
+     "t": "i call it mono. it's a choice...ok it's not a choice."
+    }
+   ]
+  },
+  {
+   "id": "v2-t13",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "every mall used to have a store like this."
+    },
+    {
+     "e": "happy",
+     "t": "now there's only this one. you're in it. congrats."
+    }
+   ]
+  },
+  {
+   "id": "v2-t14",
+   "lines": [
+    {
+     "e": "happy",
+     "t": "my bestie and i still make burned cds."
+    },
+    {
+     "e": "calm",
+     "t": "she labels them in sharpie. no tracklist. it's a surprise every time."
+    }
+   ]
+  },
+  {
+   "id": "v2-t15",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "the owner picks the music."
+    },
+    {
+     "e": "happy",
+     "t": "i turn it up when he's not looking."
+    }
+   ]
+  },
+  {
+   "id": "v2-t16",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "slow day."
+    },
+    {
+     "e": "calm",
+     "t": "it's always a slow day. i like it like that."
+    }
+   ]
+  },
+  {
+   "id": "v2-t18",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "the stockroom light keeps buzzing."
+    },
+    {
+     "e": "calm",
+     "t": "i don't go back there after close. no reason."
+    }
+   ]
+  },
+  {
+   "id": "v2-t19",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "have you seen the shirt packaging? looks just like a candy wrapper"
+    },
+    {
+     "e": "happy",
+     "t": "just dont eat whats inside...thatd be awkward..."
+    }
+   ]
+  },
+  {
+   "id": "v2-t20",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "the owner named the pink one raspberry rapture."
+    },
+    {
+     "e": "annoyed",
+     "t": "i wanted to call it fuschia frenzy. i lost that vote. it was a vote of one. his. guess mine didnt count *shrugs*"
+    }
+   ]
+  },
+  {
+   "id": "v2-t21",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "nuclear nectar looks different under every light."
+    },
+    {
+     "e": "happy",
+     "t": "under the bathroom light here it looks actually radioactive. which, fair."
+    }
+   ]
+  },
+  {
+   "id": "v2-t23",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "the deadheart is half heart, half ribcage."
+    },
+    {
+     "e": "happy",
+     "t": "love and death...in love and death...oh man i need to listen to the used again"
+    }
+   ]
+  },
+  {
+   "id": "v2-t24",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "if you're between sizes, size up."
+    },
+    {
+     "e": "happy",
+     "t": "hoodies are for disappearing into. at least for me"
+    }
+   ]
+  },
+  {
+   "id": "v2-t25",
+   "lines": [
+    {
+     "e": "happy",
+     "t": "the ghouls tee goes so hard with plaid pants."
+    },
+    {
+     "e": "calm",
+     "t": "trust me. i'm a professional. i work retail."
+    }
+   ]
+  },
+  {
+   "id": "v2-t26",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "i keep a lint roller at the counter for emergencies."
+    },
+    {
+     "e": "annoyed",
+     "t": "every day is an emergency. i wear black. and have 4 cats. lifes a struggle"
+    }
+   ]
+  },
+  {
+   "id": "v2-t27",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "lining up the planes print across the seams took forever."
+    },
+    {
+     "e": "happy",
+     "t": "wonder why the owner didnt use the tees with no side seam??"
+    }
+   ]
+  },
+  {
+   "id": "v2-t28",
+   "lines": [
+    {
+     "e": "happy",
+     "t": "my first show i spent two hours doing my hair just to sweat it flat during the opening band."
+    },
+    {
+     "e": "calm",
+     "t": "nobody noticed. everyone was busy getting kicked in the face."
+    }
+   ]
+  },
+  {
+   "id": "v2-t29",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "i still have my old flip phone. no service."
+    },
+    {
+     "e": "happy",
+     "t": "i just like using it to take mirror selfies straight from 2008"
+    }
+   ]
+  },
+  {
+   "id": "v2-t30",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "myspace top 8 ruined so many friendships."
+    },
+    {
+     "e": "annoyed",
+     "t": "i was number three on a lot of lists. never number one. it's fine. it's been 15 years. it's fine."
+    }
+   ]
+  },
+  {
+   "id": "v2-t31",
+   "lines": [
+    {
+     "e": "happy",
+     "t": "i did my eyeliner on the city bus for four years."
+    },
+    {
+     "e": "calm",
+     "t": "i could do a wing during an earthquake. it's my only real skill."
+    }
+   ]
+  },
+  {
+   "id": "v2-t32",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "the mall stores used to smell like that one incense."
+    },
+    {
+     "e": "happy",
+     "t": "i think about it more than i think about most people."
+    }
+   ]
+  },
+  {
+   "id": "v2-t33",
+   "lines": [
+    {
+     "e": "happy",
+     "t": "i went to a show where the singer jumped off the balcony into the crowd."
+    },
+    {
+     "e": "calm",
+     "t": "i caught a shoe. not his. someone else's. i still have it."
+    }
+   ]
+  },
+  {
+   "id": "v2-t34",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "the owner answers the phone 'candy carnage' like it's the title of a horror movie."
+    },
+    {
+     "e": "happy",
+     "t": "every single time. i love him for it. don't tell him."
+    }
+   ]
+  },
+  {
+   "id": "v2-t35",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "my scooter's parked out back. it's purple."
+    },
+    {
+     "e": "happy",
+     "t": "it makes a noise like a sad goose. i named her gertrude."
+    }
+   ]
+  },
+  {
+   "id": "v2-t36",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "i'm supposed to refold the tees every hour."
+    },
+    {
+     "e": "happy",
+     "t": "i refold them every hour-ish. the ish is doing a lot of work."
+    }
+   ]
+  },
+  {
+   "id": "v2-t37",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "the bathroom light flickers sometimes."
+    },
+    {
+     "e": "calm",
+     "t": "don't worry about it. it's a bathroom light. they do that."
+    }
+   ]
+  },
+  {
+   "id": "v2-t38",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "someone keeps leaving empty energy drink cans by the back door."
+    },
+    {
+     "e": "annoyed",
+     "t": "not mine. ill have a monster when im feelin sentimental but im more of a coffee person in my old age"
+    }
+   ]
+  }
+ ],
+ "drop": [],
+ "lore": [],
+ "idle": [
+  {
+   "id": "v2-i0",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "..."
+    }
+   ]
+  },
+  {
+   "id": "v2-i1",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "take your time. or don't."
+    }
+   ]
+  },
+  {
+   "id": "v2-i2",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "i'm still here. i work here."
+    }
+   ]
+  },
+  {
+   "id": "v2-i3",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "*hums Sugar Rush*"
+    }
+   ]
+  },
+  {
+   "id": "v2-i4",
+   "lines": [
+    {
+     "e": "annoyed",
+     "t": "did you fall asleep?"
+    }
+   ]
+  },
+  {
+   "id": "v2-i5",
+   "lines": [
+    {
+     "e": "happy",
+     "t": "no rush. i'm getting paid either way."
+    }
+   ]
+  }
+ ],
+ "products": {
+  "RASPBERRY RAPTURE HOODIE": {
+   "id": "v2-p0",
+   "lines": [
+    {
+     "e": "happy",
+     "t": "raspberry rapture. pre-order, limited sizes. the inside of the hood is the best part."
+    }
+   ]
+  },
+  "NUCLEAR NECTAR HOODIE": {
+   "id": "v2-p1",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "nuclear nectar. same deal as the pink one. this green doesn't exist in nature. i checked."
+    }
+   ]
+  },
+  "GHOULS R US TEE": {
+   "id": "v2-p2",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "ghouls r us. the giraffe's been through some stuff. respect him."
+    }
+   ]
+  },
+  "DEADHEART TEE (NEON)": {
+   "id": "v2-p3",
+   "lines": [
+    {
+     "e": "happy",
+     "t": "the deadheart, but loud. people will see you from the parking lot."
+    }
+   ]
+  },
+  "DEADHEART TEE (BLACK)": {
+   "id": "v2-p4",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "deadheart on black. goes with everything you own. which is black."
+    }
+   ]
+  },
+  "PLANES TEE (RED)": {
+   "id": "v2-p5",
+   "lines": [
+    {
+     "e": "happy",
+     "t": "the planes go down the side and around the back. tap back. they're still going."
+    }
+   ]
+  },
+  "PLANES TEE (BLACK)": {
+   "id": "v2-p6",
+   "lines": [
+    {
+     "e": "calm",
+     "t": "same planes, black tee. these ones fly at night."
+    }
+   ]
+  }
+ }
+}
