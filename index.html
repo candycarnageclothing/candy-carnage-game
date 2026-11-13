@@ -632,7 +632,7 @@ body .skip.gone,body.ingame .skip.gone,.exitbtn.gone{display:none !important}
         <div class="pre">CANDEMONIUM PRE-ORDERS NOW OPEN</div>
         <h1 class="logo"><img id="t-logo" alt="Candy Carnage"><span class="tg">THE GAME</span></h1>
         <div class="start">PRESS START</div>
-        <div class="copy">&copy;1999 CANDY CARNAGE CLOTHING &middot; PROPERTY OF HELLYWOOD VIDEO</div>
+        <div class="copy">&copy;2026 CANDY CARNAGE CLOTHING</div>
       </section>
 
       <section class="layer" id="s-rpg" hidden aria-label="Shop">
@@ -894,7 +894,7 @@ function sched(){
   schedT=setTimeout(sched,30);
 }
 function startSong(where){ if(!audio()) return; waves(); stopAll(); songOn=true; songWhere=where||"cd"; songStepN=0; nextT=ac.currentTime+.08; if(songWhere==="cd") $("cdisc").classList.add("spin"); sched(); }
-const TRACKS={1:{file:"t1.mp3",name:"GHOSTLY WHISPERS",lp:[0,123.077]},2:{file:"t2.mp3",name:"IRON WOMB",lp:[0,122.5532]},3:{file:"t3.mp3",name:"GENETIC DISCOVERY",lp:[0,109.0909]},4:{file:"t4.mp3",name:"HELIX",lp:[0,106.6667]},5:{file:"t5.mp3",name:"AFTERMATH",lp:[0,117.3333]},6:{file:"t6.mp3",name:"CONTEMPLATING",lp:[0,75.0]},7:{file:"t7.mp3",name:"PARANORMAL SHOP",lp:[0,81.7021]},8:{file:"t8.mp3",name:"SUMMONING",lp:[0,129.0683]},9:{file:"t9.mp3",name:"BRAMBLEBRUSH SYMPHONY",lp:[0,76.8]}};
+const TRACKS={1:{file:"t1.mp3",name:"GHOSTLY WHISPERS",lp:[0,123.077]},2:{file:"t2.mp3",name:"IRON WOMB",lp:[0,122.5532]},3:{file:"t3.mp3",name:"GENETIC DISCOVERY",lp:[0,109.0909]},4:{file:"t4.mp3",name:"HELIX",lp:[0,106.6667]},5:{file:"t5.mp3",name:"AFTERMATH",lp:[0,117.3333]},6:{file:"t6.mp3",name:"CONTEMPLATING",lp:[0,75.0]},7:{file:"t7.mp3",name:"PARANORMAL SHOP",lp:[0,81.7021]},8:{file:"t8.mp3",name:"SUMMONING",lp:[0,129.0683]},9:{file:"t9.mp3",name:"SUGAR RUSH",lp:[0,76.8]}};
 /* MENU_TRACK: the title screen theme. Swap to 9 once the custom track is in. SHOP_TRACK: browsing theme. */
 const MENU_TRACK=9, SHOP_TRACK=7;
 /* in the shop the soundtrack plays through in order instead of looping one song */
