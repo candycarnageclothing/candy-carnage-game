@@ -126,3 +126,12 @@ h2,h3,.page-subheading,.form-label,.product-option-label,.cart-subtotal-label{fo
   .cc-bar-track,.checkout-button,.nav-menu-item>a::before,.add-to-cart-button::before,.checkout-button::before,.cc-back::before{animation:none !important}
   .cc-bar-track{flex-wrap:wrap}
 }
+
+/* ---------- credits page (filled in by store.js) ---------- */
+.cc-credits{max-width:640px;margin:0 auto;padding:10px 0 80px;text-align:center}
+.cc-credits-intro{font-size:17px;line-height:1.6;margin:0 0 34px !important}
+.cc-credits h2{font-size:12px !important;letter-spacing:.3em !important;color:var(--cc-dim) !important;margin:34px 0 10px !important}
+.cc-credits p{font-family:var(--cc-menu);font-size:20px;letter-spacing:.06em;margin:0 0 4px !important}
+.cc-credits a{color:var(--cc-gold) !important;text-decoration:none !important;border-bottom:2px dashed rgba(255,225,74,.45)}
+.cc-credits a:hover{color:var(--cc-pink) !important;border-color:var(--cc-pink)}
+.cc-credits small{font-family:var(--cc-menu);font-size:11px;letter-spacing:.15em;color:var(--cc-dim)}
