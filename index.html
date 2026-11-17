@@ -854,7 +854,7 @@ body.zooming > #money{display:none !important}
 <script>
 (function(){
 /* HOODIE DROP: before this moment the hoodies show as coming soon. After it, the shop flips to pre-order by itself. Change the time here if needed. */
-const DROP_AT=new Date("2026-11-20T00:00:00-07:00"), PRE=Date.now()<DROP_AT.getTime();
+const DROP_AT=new Date("2026-11-20T07:00:00-07:00"), PRE=Date.now()<DROP_AT.getTime();
 "use strict";
 /* J's SlayStation logo (vector art, white wordmark for the black boot screen) */
 /* J's white-screen deadheart (vector), heart half and ribcage half */
@@ -1513,6 +1513,12 @@ function stateLines(){
   if(st.pokes>=3) L.push([{e:"annoyed",t:"still thinking about the poking, by the way."}]);
   return L;
 }
+/* seasonal lines: only during their dates. One plays early each visit, the rest mix into TALK */
+let SEASON=[
+  {from:"11-16",to:"11-30",lines:[{e:"calm",t:"i still sit at the kids table. i requested it. better conversation."}]},
+  {from:"11-16",to:"11-30",lines:[{e:"happy",t:"things i'm thankful for: eyeliner that survives a pit, my scooter, and this shop not having a dress code."}]},
+  {from:"11-16",to:"11-30",lines:[{e:"calm",t:"people keep asking about black friday. there's no restock. there's never a restock."},{e:"happy",t:"that's kind of the whole thing."}]}
+];
 /* ===== lines from MothVoxBox =====
    If moth-lines.json sits next to the game (exported from MothVoxBox and uploaded to GitHub),
    it replaces the built-in script. If it's missing, the lines above are used. */
@@ -1527,6 +1533,7 @@ function applyVox(x){
   (x.talk||[]).concat(x.drop||[]).forEach(it=>{ if(!okLines(it)||!inDates(it)) return;
     if(IMPORTANT_IDS[it.id]){ if(!(PRE&&it.id==="v2-imp-preorder")) swapIn(IMPORTANT_IDS[it.id],it.lines); } else { const a=[]; swapIn(a,it.lines); pool.push(a); } });
   if(pool.length){ TALK.length=0; pool.forEach(a=>TALK.push(a)); }
+  if(Array.isArray(x.season)) SEASON=x.season.filter(okLines).map(it=>{ const a=[]; swapIn(a,it.lines); return {from:it.from,to:it.to,lines:a}; });
   const idle=(x.idle||[]).filter(it=>okLines(it)&&inDates(it)).map(it=>({e:it.lines[0].e||"calm",t:it.lines[0].t}));
   if(idle.length){ IDLE.length=0; idle.forEach(l=>IDLE.push(l)); }
   const pr=x.products||{};
@@ -1544,10 +1551,14 @@ function buildDeck(){
   if(!st.said.has(lineId(PREORDER))) imp.push(PREORDER);
   if(!h[lineId(NAME1)]) imp.push(NAME1);
   if(!h[lineId(NECKLACE)]) imp.push(NECKLACE);
-  let pool=TALK.concat(h[lineId(NECKLACE)]?[NECKLACE]:[]).filter(l=>!st.said.has(lineId(l)));
+  const seas=SEASON.filter(it=>it.from&&it.to&&inDates(it)).map(it=>it.lines);
+  /* one seasonal line they haven't heard yet comes early; the others join the mix */
+  const fresh=shuffle(seas.filter(l=>!h[lineId(l)]&&!st.said.has(lineId(l))));
+  const early=st.seasonEarly?[]:fresh.slice(0,1); if(early.length) st.seasonEarly=1;
+  let pool=TALK.concat(h[lineId(NECKLACE)]?[NECKLACE]:[],seas.filter(l=>l!==early[0])).filter(l=>!st.said.has(lineId(l)));
   if(!pool.length){ st.said=new Set(); pool=TALK.slice(); }
   const rest=shuffle(pool).sort((a,b)=>(h[lineId(a)]||0)-(h[lineId(b)]||0));
-  return imp.slice(0,1).concat([timeLine()],imp.slice(1,2),stateLines(),imp.slice(2),rest);
+  return imp.slice(0,1).concat([timeLine()],early,imp.slice(1,2),stateLines(),imp.slice(2),rest);
 }
 function talk(){
   st.talked++;
