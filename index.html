@@ -686,6 +686,15 @@ body.zooming > #money{display:none !important}
 
 .scene{background:radial-gradient(ellipse at 50% 30%, rgba(138,61,255,.2), transparent 55%),radial-gradient(ellipse at 40% 60%, rgba(69,255,106,.06), transparent 45%),linear-gradient(180deg,#120b1f 0%,#0b0715 100%) !important}
 .ri.front{filter:drop-shadow(0 1.4cqw 1.8cqw rgba(0,0,0,.7)) drop-shadow(0 0 2cqw rgba(140,160,255,.35))}
+/* desktop only (mouse + hover). Text shadows were sized to screen width while the text is
+   sized by --k, so on wide screens the shadow outgrew the text. Scale it with the text instead.
+   Phones and tablets never match this query, so mobile is unchanged. */
+@media (hover:hover) and (pointer:fine){
+  .win{text-shadow:calc(.14*var(--k)) calc(.14*var(--k)) 0 rgba(0,0,0,.85)}
+  .sysbtn{text-shadow:0 calc(.14*var(--k)) 0 #000}
+  .cr-name{text-shadow:calc(.14*var(--k)) calc(.14*var(--k)) 0 #000}
+  .chartbtn{text-shadow:none;line-height:1.05}
+}
 </style>
 
 <div class="clip"><div class="scene" id="scene">
