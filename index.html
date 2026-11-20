@@ -1460,7 +1460,7 @@ let inHub=false, idleT=null, talkDeck=[];
 const NAME2=[{e:"happy",t:"oh! i remember why i'm called moth."},{e:"calm",t:"i always wear my goggles. i ride my scooter to work."},{e:"happy",t:"my bestie said i look like a moth in them. pretty sure that was it."},{e:"calm",t:"yeah. that was it."}];
 const NAME1=[{e:"calm",t:"why is my name moth?"},{e:"calm",t:"..."},{e:"annoyed",t:"wow. i actually don't remember.",fx:()=>{ if(!st.mothQ){ st.mothQ=1; talkDeck.splice(Math.min(talkDeck.length,2+Math.floor(Math.random()*3)),0,NAME2); } }}];
 const PREORDER=PRE?[{e:"calm",t:"the hoodies open for pre-order friday the 20th."},{e:"calm",t:"sizes are limited. that's all the selling i'm doing today."}]
-  :[{e:"calm",t:"the hoodies are pre-order only. sizes are limited."},{e:"calm",t:"that's all the selling i'm doing today."}];
+  :[{e:"happy",t:"the hoodies are live. pre-order only, and sizes are limited."},{e:"calm",t:"that's all the selling i'm doing today."}];
 const NECKLACE=[{e:"happy",t:"oh, this necklace? i make my own jewelry. i made this."},{e:"calm",t:"it's the candy carnage deadheart."},{e:"calm",t:"i showed the owner. he seemed to like it, but he's not sure it'd sell."},{e:"happy",t:"you should tell him you like it too."}];
 /* important lines: the pre-order note once per visit; the name story and the necklace until they've been heard once */
 const TALK=[
@@ -1538,7 +1538,10 @@ let SEASON=[
   {from:"11-19",to:"11-23",lines:[{e:"calm",t:"gta 6 is out. half the world called in sick today. the other half is lying about it."}]},
   {from:"11-19",to:"11-23",lines:[{e:"calm",t:"rockstar dropped their thing the day before our hoodies."},{e:"annoyed",t:"coincidence. probably."}]},
   {from:"11-19",to:"11-23",lines:[{e:"happy",t:"you're here instead of playing gta 6? respect. priorities."}]},
-  {from:"11-19",to:"11-23",lines:[{e:"calm",t:"the owner's been waiting for that game since he had side bangs."},{e:"calm",t:"it's been a long time."}]}
+  {from:"11-19",to:"11-23",lines:[{e:"calm",t:"the owner's been waiting for that game since he had side bangs."},{e:"calm",t:"it's been a long time."}]},
+  {from:"11-20",to:"11-23",live:1,lines:[{e:"happy",t:"the hoodies are finally live. the owner's been pacing since 6am."},{e:"calm",t:"he says he wasn't. he was."}]},
+  {from:"11-20",to:"11-23",live:1,lines:[{e:"calm",t:"pre-orders are open. when they close, that's it."},{e:"annoyed",t:"no restock. you know the rules."}]},
+  {from:"11-20",to:"11-23",live:1,lines:[{e:"happy",t:"raspberry rapture or nuclear nectar. pick a side."},{e:"calm",t:"or don't. i'm not your boss."}]}
 ];
 /* ===== lines from MothVoxBox =====
    If moth-lines.json sits next to the game (exported from MothVoxBox and uploaded to GitHub),
@@ -1554,7 +1557,7 @@ function applyVox(x){
   (x.talk||[]).concat(x.drop||[]).forEach(it=>{ if(!okLines(it)||!inDates(it)) return;
     if(IMPORTANT_IDS[it.id]){ if(!(PRE&&it.id==="v2-imp-preorder")) swapIn(IMPORTANT_IDS[it.id],it.lines); } else { const a=[]; swapIn(a,it.lines); pool.push(a); } });
   if(pool.length){ TALK.length=0; pool.forEach(a=>TALK.push(a)); }
-  if(Array.isArray(x.season)) SEASON=x.season.filter(okLines).map(it=>{ const a=[]; swapIn(a,it.lines); return {from:it.from,to:it.to,lines:a}; });
+  if(Array.isArray(x.season)) SEASON=x.season.filter(okLines).map(it=>{ const a=[]; swapIn(a,it.lines); return {from:it.from,to:it.to,live:!!it.live||/\blive\b/i.test(it.note||""),lines:a}; });
   const idle=(x.idle||[]).filter(it=>okLines(it)&&inDates(it)).map(it=>({e:it.lines[0].e||"calm",t:it.lines[0].t}));
   if(idle.length){ IDLE.length=0; idle.forEach(l=>IDLE.push(l)); }
   const pr=x.products||{};
@@ -1572,9 +1575,9 @@ function buildDeck(){
   if(!st.said.has(lineId(PREORDER))) imp.push(PREORDER);
   if(!h[lineId(NAME1)]) imp.push(NAME1);
   if(!h[lineId(NECKLACE)]) imp.push(NECKLACE);
-  const seas=SEASON.filter(it=>it.from&&it.to&&inDates(it)).map(it=>it.lines);
+  const seasOn=SEASON.filter(it=>it.from&&it.to&&inDates(it)&&!(it.live&&PRE)), seas=seasOn.map(it=>it.lines), liveSet=new Set(seasOn.filter(it=>it.live).map(it=>it.lines));
   /* one seasonal line they haven't heard yet comes early; the others join the mix */
-  const fresh=shuffle(seas.filter(l=>!h[lineId(l)]&&!st.said.has(lineId(l))));
+  const fresh0=shuffle(seas.filter(l=>!h[lineId(l)]&&!st.said.has(lineId(l)))), fresh=fresh0.filter(l=>liveSet.has(l)).concat(fresh0.filter(l=>!liveSet.has(l)));
   const early=st.seasonEarly?[]:fresh.slice(0,1); if(early.length) st.seasonEarly=1;
   let pool=TALK.concat(h[lineId(NECKLACE)]?[NECKLACE]:[],seas.filter(l=>l!==early[0])).filter(l=>!st.said.has(lineId(l)));
   if(!pool.length){ st.said=new Set(); pool=TALK.slice(); }
@@ -1659,8 +1662,8 @@ enter.rpg=()=>{
     {who:"MOTH",e:"happy",t:"oh hey. take your time. or don't, i'm not your boss.",fx:()=>{st.met=true;}},
     ...(PRE?[{e:"calm",t:"i'm moth. i work here. tees are on the shelves."},
     {e:"calm",t:"two new hoodies open for pre-order friday the 20th. that's the whole speech."}]
-    :[{e:"calm",t:"i'm moth. i work here. new drop's out, two hoodies, a few tees."},
-    {e:"calm",t:"the hoodies are pre-order. sizes are limited. that's the whole speech."}])
+    :[{e:"calm",t:"i'm moth. i work here. the new hoodies just went live. two of them."},
+    {e:"calm",t:"pre-orders are open. sizes are limited. that's the whole speech."}])
   ];
   else if(st.visits===2) intro=[{e:"happy",t:"back again. cool."},{e:"calm",t:"the shelves didn't change. okay, they did a little."}];
   else if(st.visits===3) intro=[{e:"calm",t:"third visit. you're basically a regular."},{e:"happy",t:"regulars get nothing. but it's nice to be one."}];
